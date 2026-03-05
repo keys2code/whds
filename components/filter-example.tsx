@@ -615,7 +615,6 @@ export function Pattern() {
               shortcutKey="f"
               shortcutLabel="F"
               enableShortcut={true}
-			  size="sm"
               trigger={
                 <Button variant="outline">
                   <IconFilter />

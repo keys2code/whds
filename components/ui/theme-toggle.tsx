@@ -16,6 +16,7 @@ const colorAccentOptions: { label: string; value: ColorAccent; icon: React.React
   { label: "Fuschia", value: "fuschia", icon: <IconPalette size={18} /> },
   { label: "Blue", value: "blue", icon: <IconPalette size={18} /> },
   { label: "Red", value: "red", icon: <IconPalette size={18} /> },
+  { label: "Neutral", value: "neutral", icon: <IconPalette size={18} /> },
 ];
 
 export function ThemeToggle() {

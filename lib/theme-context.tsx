@@ -5,7 +5,7 @@ import * as React from "react";
 const ACCENT_STORAGE_KEY = "theme-accent";
 const DENSITY_STORAGE_KEY = "theme-density";
 
-export type ColorAccent = "fuschia" | "blue" | "red";
+export type ColorAccent = "fuschia" | "blue" | "red" | "neutral";
 export type Density = "default" | "compact";
 
 type ThemeContextValue = {
@@ -22,7 +22,7 @@ const ThemeContext = React.createContext<ThemeContextValue | undefined>(
 function getStoredAccent(): ColorAccent {
   if (typeof window === "undefined") return "fuschia";
   const stored = localStorage.getItem(ACCENT_STORAGE_KEY);
-  if (stored === "blue" || stored === "red") return stored;
+  if (stored === "blue" || stored === "red" || stored === "neutral") return stored;
   return "fuschia";
 }
 
