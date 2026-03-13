@@ -1,0 +1,17 @@
+{
+  "name": "@workspace/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./css-vars.css": "./dist/css-vars.css",
+    "./tailwind-theme.css": "./dist/tailwind-theme.css",
+    "./tokens.json": "./dist/tokens.json"
+  }
+}

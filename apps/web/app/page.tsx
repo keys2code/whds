@@ -1,4 +1,6 @@
 import { Button } from "@workspace/ui/components/button"
+import { Badge } from "@workspace/ui/components/badge"
+import { Badge as ReuiBadge } from "@workspace/ui/components/reui/badge"
 
 export default function Page() {
   return (
@@ -8,6 +10,14 @@ export default function Page() {
           <h1 className="font-medium">Project ready!</h1>
           <p>You may now add components and start building.</p>
           <p>We&apos;ve already added the button component for you.</p>
+          <div className="mt-2">
+            <Badge variant="secondary">New</Badge>
+          </div>
+          <div className="mt-2">
+            <ReuiBadge variant="outline" size="default">
+              Badge
+            </ReuiBadge>
+          </div>
           <Button className="mt-2">Button</Button>
         </div>
         <div className="text-muted-foreground font-mono text-xs">
