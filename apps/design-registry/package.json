@@ -4,13 +4,13 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build && pnpm run prepare && pnpm run build:registry && next dev --turbopack",
-    "build": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build && pnpm run prepare && pnpm run build:registry && next build",
+    "dev": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build && pnpm run registry:prepare && pnpm run build:registry && next dev --turbopack",
+    "build": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build && pnpm run registry:prepare && pnpm run build:registry && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx,mjs,json}\"",
     "typecheck": "tsc --noEmit",
-    "prepare": "node ./scripts/prepare-registry.mjs",
+    "registry:prepare": "node ./scripts/prepare-registry.mjs",
     "build:registry": "shadcn build registry.json --output public/r"
   },
   "dependencies": {
