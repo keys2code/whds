@@ -30,11 +30,13 @@
   "sidebar-accent-foreground": "oklch(0.985 0 0)",
   "sidebar-border": "oklch(1 0 0 / 10%)",
   "sidebar-ring": "oklch(0.542 0.034 322.5)",
-  "destructive-foreground": "var(--color-red-600)",
+  "destructive-foreground": "var(--color-red-400)",
   "success": "var(--color-emerald-500)",
   "success-foreground": "var(--color-emerald-600)",
   "info": "var(--color-sky-500)",
   "info-foreground": "var(--color-sky-600)",
   "warning": "var(--color-yellow-500)",
-  "warning-foreground": "var(--color-yellow-600)"
+  "warning-foreground": "var(--color-yellow-600)",
+  "invert": "var(--color-zinc-700)",
+  "invert-foreground": "var(--color-zinc-50)"
 }

@@ -4,10 +4,16 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit"
   },
+  "files": [
+    "dist",
+    "src/styles/globals.css",
+    "postcss.config.mjs"
+  ],
   "dependencies": {
     "@base-ui/react": "^1.2.0",
     "@phosphor-icons/react": "^2.1.10",
@@ -38,8 +44,8 @@
   "exports": {
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": "./src/components/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./lib/*": "./dist/lib/*.js",
+    "./components/*": "./dist/components/*.js",
+    "./hooks/*": "./dist/hooks/*.js"
   }
 }

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs"
 import { Badge } from "@workspace/ui/components/reui/badge"
+import { Button } from "@workspace/ui/components/button"
+import { CheckIcon, XIcon } from "@phosphor-icons/react/dist/ssr"
 
 const meta = {
   title: "Components/ReUI Badge",
@@ -13,6 +15,7 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof meta>
+type BadgeSize = "xs" | "sm" | "default" | "lg" | "xl"
 
 const variants = [
   "default",
@@ -22,7 +25,11 @@ const variants = [
   "success",
   "warning",
   "destructive",
-  "primary",
+  "primary-light",
+  "warning-light",
+  "success-light",
+  "info-light",
+  "destructive-light",
   "primary-outline",
   "warning-outline",
   "success-outline",
@@ -39,5 +46,89 @@ export const VariantShowcase: Story = {
         </Badge>
       ))}
     </div>
+  ),
+}
+
+const sizes: BadgeSize[] = ["xs", "sm", "default", "lg", "xl"]
+
+export const SizeShowcase: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-2">
+      {sizes.map((size) => (
+        <Badge key={`normal-${size}`} size={size} variant="outline">
+          Size {size}
+        </Badge>
+      ))}
+    </div>
+  ),
+}
+
+export const WithLeftIcon: Story = {
+  render: () => (
+    <Badge variant="outline">
+      <CheckIcon aria-hidden="true" className="size-2.5" />
+      Verified
+    </Badge>
+  ),
+}
+
+export const WithDismissButton: Story = {
+  render: () => (
+    <Badge
+      variant="outline"
+      className="gap-0.75"
+    >
+      Updates
+      <Button
+        variant="ghost"
+        size="icon"
+        className="size-2.5 hover:bg-transparent"
+      >
+        <XIcon />
+      </Button>
+    </Badge>
+  ),
+}
+
+export const WithStatusDot: Story = {
+  render: () => (
+    <Badge variant="info-light">
+      <span className="ms-0.25 size-1.25 rounded-full! bg-[currentColor]" />{" "}
+      Live
+    </Badge>
+  ),
+}
+
+export const FullRadius: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-2">
+        {sizes.map((size, index) => (
+          <Badge key={`number-round-${size}`} size={size} variant="outline" className="rounded-full!">
+            {index + 1}
+          </Badge>
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        {sizes.map((size) => (
+          <Badge key={`text-round-${size}`} size={size} variant="outline" className="rounded-full">
+            Size {size}
+          </Badge>
+        ))}
+      </div>
+    </div>
+  ),
+}
+
+export const AsLink: Story = {
+  render: () => (
+    <Badge
+      variant="outline"
+      render={
+        <a href="https://reui.io/patterns/badge" target="_blank" rel="noreferrer">
+          Badge docs
+        </a>
+      }
+    />
   ),
 }

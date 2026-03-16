@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build:styles": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
