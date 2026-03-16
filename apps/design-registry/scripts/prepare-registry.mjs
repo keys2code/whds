@@ -144,13 +144,13 @@ function extractImports(code) {
 }
 
 function rewriteSource(code) {
-  if (code.includes("@workspace/ui/components/")) {
+  if (code.includes("@keys2design/whds-ui/components/")) {
     throw new Error(
       "Registry generator does not yet support component-to-component workspace imports."
     )
   }
 
-  return code.replaceAll('@workspace/ui/lib/utils', "./utils")
+  return code.replaceAll('@keys2design/whds-ui/lib/utils', "./utils")
 }
 
 function buildItem(componentFile, group) {
@@ -167,7 +167,7 @@ function buildItem(componentFile, group) {
   const dependencySet = new Set()
 
   for (const specifier of extractImports(sourceCode)) {
-    if (!specifier.startsWith(".") && !specifier.startsWith("@workspace/ui/")) {
+    if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
       dependencySet.add(getPackageName(specifier))
     }
   }
@@ -177,7 +177,7 @@ function buildItem(componentFile, group) {
     writeFileSync(join(outputDir, sharedFile.target), sharedCode)
 
     for (const specifier of extractImports(sharedCode)) {
-      if (!specifier.startsWith(".") && !specifier.startsWith("@workspace/ui/")) {
+      if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
         dependencySet.add(getPackageName(specifier))
       }
     }

@@ -45,6 +45,8 @@ export const themeVars = {
   "color-success-foreground": "var(--success-foreground)",
   "color-success": "var(--success)",
   "color-destructive-foreground": "var(--destructive-foreground)",
+  "text-sm": "0.8125rem",
+  "text-sm--line-height": "calc(1.25 / 0.8125)",
 }
 
 export const baseLayerCss = {

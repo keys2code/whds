@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs"
-import { Badge } from "@workspace/ui/components/reui/badge"
-import { Button } from "@workspace/ui/components/button"
+import { Badge } from "@keys2design/whds-ui/components/reui/badge"
+import { Button } from "@keys2design/whds-ui/components/button"
 import { CheckIcon, XIcon } from "@phosphor-icons/react/dist/ssr"
 
 const meta = {
@@ -15,7 +15,7 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof meta>
-type BadgeSize = "xs" | "sm" | "default" | "lg" | "xl"
+type BadgeSize = "sm" | "default" | "lg"
 
 const variants = [
   "default",
@@ -25,7 +25,6 @@ const variants = [
   "success",
   "warning",
   "destructive",
-  "primary-light",
   "warning-light",
   "success-light",
   "info-light",
@@ -49,7 +48,7 @@ export const VariantShowcase: Story = {
   ),
 }
 
-const sizes: BadgeSize[] = ["xs", "sm", "default", "lg", "xl"]
+const sizes: BadgeSize[] = ["sm", "default", "lg"]
 
 export const SizeShowcase: Story = {
   render: () => (
@@ -65,7 +64,7 @@ export const SizeShowcase: Story = {
 
 export const WithLeftIcon: Story = {
   render: () => (
-    <Badge variant="outline">
+    <Badge variant="outline" className="gap-0.75">
       <CheckIcon aria-hidden="true" className="size-2.5" />
       Verified
     </Badge>
@@ -92,7 +91,7 @@ export const WithDismissButton: Story = {
 
 export const WithStatusDot: Story = {
   render: () => (
-    <Badge variant="info-light">
+    <Badge variant="info-light" className="gap-0.75">
       <span className="ms-0.25 size-1.25 rounded-full! bg-[currentColor]" />{" "}
       Live
     </Badge>

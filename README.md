@@ -1,21 +1,36 @@
-# shadcn/ui monorepo template
+# WHDS Monorepo
 
-This is a Next.js monorepo template with shadcn/ui.
+This repo contains the WHDS design-system packages and the local apps used to develop them.
 
-## Adding components
+## Packages
 
-To add components to your app, run the following command at the root of your `web` app:
+- `@keys2design/whds-ui`: React components such as `Button`, `Badge`, and `Switch`
+- `@keys2design/whds-tailwind-preset`: shared Tailwind CSS preset and generated design-system styles
+
+## Package usage
 
 ```bash
-pnpm dlx shadcn@latest add button -c apps/web
+npm install @keys2design/whds-ui @keys2design/whds-tailwind-preset react react-dom
 ```
-
-This will place the ui components in the `packages/ui/src/components` directory.
-
-## Using components
-
-To use the components in your app, import them from the `ui` package.
 
 ```tsx
-import { Button } from "@workspace/ui/components/button";
+import "@keys2design/whds-ui/globals.css"
+import { Button } from "@keys2design/whds-ui"
 ```
+
+## Publishing
+
+Before publishing, bump the versions for:
+
+- `packages/tailwind-preset/package.json`
+- `packages/ui/package.json`
+
+Useful release commands:
+
+```bash
+pnpm release:verify
+pnpm release:pack
+pnpm publish:packages
+```
+
+Publish order matters because `@keys2design/whds-ui` depends on `@keys2design/whds-tailwind-preset`.

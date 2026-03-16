@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/nextjs"
 
-import "@workspace/ui/globals.css"
+import "@keys2design/whds-ui/globals.css"
 import { ThemeProvider } from "../../web/components/theme-provider"
 
 const preview: Preview = {

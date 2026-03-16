@@ -15,8 +15,8 @@
   "menuAccent": "subtle",
   "aliases": {
     "components": "@/components",
-    "utils": "@workspace/ui/lib/utils",
-    "ui": "@workspace/ui/components",
+    "utils": "@keys2design/whds-ui/lib/utils",
+    "ui": "@keys2design/whds-ui/components",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },

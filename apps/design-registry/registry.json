@@ -62,7 +62,9 @@
           "color-info": "var(--info)",
           "color-success-foreground": "var(--success-foreground)",
           "color-success": "var(--success)",
-          "color-destructive-foreground": "var(--destructive-foreground)"
+          "color-destructive-foreground": "var(--destructive-foreground)",
+          "text-sm": "0.8125rem",
+          "text-sm--line-height": "calc(1.25 / 0.8125)"
         },
         "light": {
           "background": "oklch(1 0 0)",
@@ -71,8 +73,8 @@
           "card-foreground": "oklch(0.145 0.008 326)",
           "popover": "oklch(1 0 0)",
           "popover-foreground": "oklch(0.145 0.008 326)",
-          "primary": "oklch(0.56 0.3 323.949)",
-          "primary-foreground": "oklch(0.977 0.017 320.058)",
+          "primary": "oklch(0.21 0.006 285.885)",
+          "primary-foreground": "oklch(0.985 0 0)",
           "secondary": "oklch(0.967 0.001 286.375)",
           "secondary-foreground": "oklch(0.21 0.006 285.885)",
           "muted": "oklch(0.96 0.003 325.6)",
@@ -82,24 +84,24 @@
           "destructive": "oklch(0.577 0.245 27.325)",
           "border": "oklch(0.922 0.005 325.62)",
           "input": "oklch(0.922 0.005 325.62)",
-          "ring": "oklch(0.711 0.019 323.02)",
-          "chart-1": "oklch(0.833 0.145 321.434)",
-          "chart-2": "oklch(0.667 0.295 322.15)",
-          "chart-3": "oklch(0.591 0.293 322.896)",
-          "chart-4": "oklch(0.518 0.253 323.949)",
-          "chart-5": "oklch(0.452 0.211 324.591)",
+          "ring": "oklch(0.552 0.016 285.938)",
+          "chart-1": "oklch(0.85 0.02 250)",
+          "chart-2": "oklch(0.75 0.02 250)",
+          "chart-3": "oklch(0.65 0.02 250)",
+          "chart-4": "oklch(0.55 0.02 250)",
+          "chart-5": "oklch(0.45 0.02 250)",
           "radius": "0.45rem",
           "sidebar": "oklch(0.985 0 0)",
           "sidebar-foreground": "oklch(0.145 0.008 326)",
-          "sidebar-primary": "oklch(0.591 0.293 322.896)",
-          "sidebar-primary-foreground": "oklch(0.977 0.017 320.058)",
+          "sidebar-primary": "oklch(0.21 0.006 285.885)",
+          "sidebar-primary-foreground": "oklch(0.985 0 0)",
           "sidebar-accent": "oklch(0.96 0.003 325.6)",
           "sidebar-accent-foreground": "oklch(0.212 0.019 322.12)",
           "sidebar-border": "oklch(0.922 0.005 325.62)",
           "sidebar-ring": "oklch(0.711 0.019 323.02)",
           "destructive-foreground": "var(--color-red-700)",
           "success": "var(--color-emerald-500)",
-          "success-foreground": "var(--color-emerald-900)",
+          "success-foreground": "var(--color-emerald-700)",
           "info": "var(--color-sky-500)",
           "info-foreground": "var(--color-sky-900)",
           "warning": "var(--color-yellow-500)",
@@ -114,8 +116,8 @@
           "card-foreground": "oklch(0.985 0 0)",
           "popover": "oklch(0.212 0.019 322.12)",
           "popover-foreground": "oklch(0.985 0 0)",
-          "primary": "oklch(0.5 0.24 324.591)",
-          "primary-foreground": "oklch(0.977 0.017 320.058)",
+          "primary": "oklch(0.985 0 0)",
+          "primary-foreground": "oklch(0.21 0.006 285.885)",
           "secondary": "oklch(0.274 0.006 286.033)",
           "secondary-foreground": "oklch(0.985 0 0)",
           "muted": "oklch(0.263 0.024 320.12)",
@@ -125,16 +127,16 @@
           "destructive": "oklch(0.704 0.191 22.216)",
           "border": "oklch(1 0 0 / 10%)",
           "input": "oklch(1 0 0 / 15%)",
-          "ring": "oklch(0.542 0.034 322.5)",
-          "chart-1": "oklch(0.833 0.145 321.434)",
-          "chart-2": "oklch(0.667 0.295 322.15)",
-          "chart-3": "oklch(0.591 0.293 322.896)",
-          "chart-4": "oklch(0.518 0.253 323.949)",
-          "chart-5": "oklch(0.452 0.211 324.591)",
+          "ring": "oklch(0.705 0.015 286.067)",
+          "chart-1": "oklch(0.85 0.02 250)",
+          "chart-2": "oklch(0.75 0.02 250)",
+          "chart-3": "oklch(0.65 0.02 250)",
+          "chart-4": "oklch(0.55 0.02 250)",
+          "chart-5": "oklch(0.45 0.02 250)",
           "sidebar": "oklch(0.212 0.019 322.12)",
           "sidebar-foreground": "oklch(0.985 0 0)",
-          "sidebar-primary": "oklch(0.667 0.295 322.15)",
-          "sidebar-primary-foreground": "oklch(0.977 0.017 320.058)",
+          "sidebar-primary": "oklch(0.985 0 0)",
+          "sidebar-primary-foreground": "oklch(0.21 0.006 285.885)",
           "sidebar-accent": "oklch(0.263 0.024 320.12)",
           "sidebar-accent-foreground": "oklch(0.985 0 0)",
           "sidebar-border": "oklch(1 0 0 / 10%)",
@@ -176,28 +178,28 @@
           "--sidebar-primary-foreground": "oklch(0.98 0.02 250)"
         },
         "[data-accent=\"neutral\"]": {
-          "--primary": "oklch(0.45 0.02 250)",
-          "--primary-foreground": "oklch(0.98 0.01 250)",
-          "--ring": "oklch(0.5 0.02 250)",
-          "--chart-1": "oklch(0.85 0.02 250)",
-          "--chart-2": "oklch(0.75 0.02 250)",
-          "--chart-3": "oklch(0.65 0.02 250)",
-          "--chart-4": "oklch(0.55 0.02 250)",
-          "--chart-5": "oklch(0.45 0.02 250)",
-          "--sidebar-primary": "oklch(0.45 0.02 250)",
-          "--sidebar-primary-foreground": "oklch(0.98 0.01 250)"
+          "--primary": "oklch(0.56 0.3 323.949)",
+          "--primary-foreground": "oklch(0.977 0.017 320.058)",
+          "--ring": "oklch(0.711 0.019 323.02)",
+          "--chart-1": "oklch(0.833 0.145 321.434)",
+          "--chart-2": "oklch(0.667 0.295 322.15)",
+          "--chart-3": "oklch(0.591 0.293 322.896)",
+          "--chart-4": "oklch(0.518 0.253 323.949)",
+          "--chart-5": "oklch(0.452 0.211 324.591)",
+          "--sidebar-primary": "oklch(0.591 0.293 322.896)",
+          "--sidebar-primary-foreground": "oklch(0.977 0.017 320.058)"
         },
         ".dark[data-accent=\"neutral\"]": {
-          "--primary": "oklch(0.65 0.02 250)",
-          "--primary-foreground": "oklch(0.2 0.01 250)",
-          "--ring": "oklch(0.556 0 0)",
-          "--chart-1": "oklch(0.85 0.02 250)",
-          "--chart-2": "oklch(0.75 0.02 250)",
-          "--chart-3": "oklch(0.65 0.02 250)",
-          "--chart-4": "oklch(0.55 0.02 250)",
-          "--chart-5": "oklch(0.45 0.02 250)",
-          "--sidebar-primary": "oklch(0.7 0.02 250)",
-          "--sidebar-primary-foreground": "oklch(0.2 0.01 250)"
+          "--primary": "oklch(0.5 0.24 324.591)",
+          "--primary-foreground": "oklch(0.977 0.017 320.058)",
+          "--ring": "oklch(0.542 0.034 322.5)",
+          "--chart-1": "oklch(0.833 0.145 321.434)",
+          "--chart-2": "oklch(0.667 0.295 322.15)",
+          "--chart-3": "oklch(0.591 0.293 322.896)",
+          "--chart-4": "oklch(0.518 0.253 323.949)",
+          "--chart-5": "oklch(0.452 0.211 324.591)",
+          "--sidebar-primary": "oklch(0.667 0.295 322.15)",
+          "--sidebar-primary-foreground": "oklch(0.977 0.017 320.058)"
         },
         "[data-accent=\"red\"]": {
           "--primary": "oklch(0.59 0.22 27)",
@@ -240,37 +242,6 @@
       }
     },
     {
-      "name": "badge",
-      "type": "registry:ui",
-      "title": "Badge",
-      "description": "Badge from the WHDS design system.",
-      "categories": [
-        "ui"
-      ],
-      "dependencies": [
-        "@base-ui/react",
-        "class-variance-authority",
-        "clsx",
-        "tailwind-merge"
-      ],
-      "registryDependencies": [
-        "whds-base"
-      ],
-      "files": [
-        {
-          "path": "items/badge/badge.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "items/badge/utils.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "meta": {
-        "source": "packages/ui/src/components/badge.tsx"
-      }
-    },
-    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -299,6 +270,36 @@
       ],
       "meta": {
         "source": "packages/ui/src/components/button.tsx"
+      }
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Switch from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "items/switch/switch.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "items/switch/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/switch.tsx"
       }
     },
     {

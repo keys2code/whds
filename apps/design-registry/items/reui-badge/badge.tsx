@@ -8,6 +8,12 @@ const badgeVariants = cva(
   "rounded-sm relative inline-flex shrink-0 items-center justify-center w-fit border border-transparent font-medium whitespace-nowrap outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=size-])]:size-3",
   {
     variants: {
+      size: {
+        default:
+          "h-5.5 min-w-5.5 px-[calc(--spacing(1)-1px)] text-sm sm:h-4.5 sm:min-w-4.5 sm:text-xs",
+        lg: "h-6.5 min-w-6.5 px-[calc(--spacing(1.5)-1px)] text-base sm:h-5.5 sm:min-w-5.5 sm:text-sm",
+        sm: "h-5 min-w-5 rounded-[.25rem] px-[calc(--spacing(1)-1px)] text-xs sm:h-4 sm:min-w-4 sm:text-[.625rem]",
+      },
       variant: {
         default: "bg-primary text-primary-foreground",
         outline: "border-border bg-transparent dark:bg-input/32",
@@ -16,8 +22,6 @@ const badgeVariants = cva(
         success: "bg-success text-white",
         warning: "bg-warning text-white",
         destructive: "bg-destructive text-white",
-        "primary-light":
-          "bg-primary/10 border-none text-primary dark:bg-primary/20",
         "warning-light":
           "bg-warning/10 border-none text-warning-foreground dark:bg-warning/20",
         "success-light":
@@ -26,13 +30,16 @@ const badgeVariants = cva(
           "bg-info/10 border-none text-info-foreground dark:bg-info/20",
         "destructive-light":
           "bg-destructive/10 border-none text-destructive-foreground dark:bg-destructive/15",
-      },
-      size: {
-        xs: "px-0.5 py-0.25 text-[0.6rem] leading-none h-3.5 min-w-4 gap-1",
-        sm: "px-0.5 py-0.25 text-[0.625rem] leading-none h-4 min-w-4.5 gap-1",
-        default: "px-1 py-0.5 text-xs h-4.5 min-w-5 gap-1",
-        lg: "px-1.25 py-0.5 text-xs h-5.5 min-w-5.5 gap-1",
-        xl: "px-1.5 py-0.75 text-sm h-6 min-w-6 gap-1.5",
+          "primary-outline":
+          "bg-background border-border text-primary dark:bg-input/30",
+        "warning-outline":
+          "bg-background border-border text-warning-foreground dark:bg-input/30",
+        "success-outline":
+          "bg-background border-border text-success-foreground dark:bg-input/30",
+        "info-outline":
+          "bg-background border-border text-info-foreground dark:bg-input/30",
+        "destructive-outline":
+          "bg-background border-border text-destructive-foreground dark:bg-input/30",
       },
     },
     defaultVariants: {

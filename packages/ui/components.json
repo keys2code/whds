@@ -11,11 +11,11 @@
   },
   "iconLibrary": "phosphor",
   "aliases": {
-    "components": "@workspace/ui/components",
-    "utils": "@workspace/ui/lib/utils",
-    "hooks": "@workspace/ui/hooks",
-    "lib": "@workspace/ui/lib",
-    "ui": "@workspace/ui/components"
+    "components": "@keys2design/whds-ui/components",
+    "utils": "@keys2design/whds-ui/lib/utils",
+    "hooks": "@keys2design/whds-ui/hooks",
+    "lib": "@keys2design/whds-ui/lib",
+    "ui": "@keys2design/whds-ui/components"
   },
   "rtl": false,
   "menuColor": "default",

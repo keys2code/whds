@@ -42,4 +42,4 @@ ${baseLayerCssText}
 `
 
 writeFileSync(join(distDir, "styles.css"), stylesCss)
-console.log("Built @workspace/tailwind-preset: dist/styles.css")
+console.log("Built @keys2design/whds-tailwind-preset: dist/styles.css")

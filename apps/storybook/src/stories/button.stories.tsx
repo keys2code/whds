@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs"
-import { Button } from "@workspace/ui/components/button"
+import { ArrowRightIcon, DownloadSimpleIcon } from "@phosphor-icons/react/dist/ssr"
+import { Button } from "@keys2design/whds-ui/components/button"
 
 const meta = {
   title: "Components/Button",
@@ -60,4 +61,26 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: { size: "lg", children: "Large" },
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    children: (
+      <>
+        <DownloadSimpleIcon aria-hidden="true" data-icon="inline-start" />
+        Download
+      </>
+    ),
+  },
+};
+
+export const WithRightIcon: Story = {
+  args: {
+    children: (
+      <>
+        Continue
+        <ArrowRightIcon aria-hidden="true" data-icon="inline-end" />
+      </>
+    ),
+  },
 };
