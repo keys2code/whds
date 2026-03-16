@@ -26,16 +26,6 @@ const badgeVariants = cva(
           "bg-info/10 border-none text-info-foreground dark:bg-info/20",
         "destructive-light":
           "bg-destructive/10 border-none text-destructive-foreground dark:bg-destructive/15",
-        "primary-outline":
-          "bg-background border-border text-primary dark:bg-input/30",
-        "warning-outline":
-          "bg-background border-border text-warning-foreground dark:bg-input/30",
-        "success-outline":
-          "bg-background border-border text-success-foreground dark:bg-input/30",
-        "info-outline":
-          "bg-background border-border text-info-foreground dark:bg-input/30",
-        "destructive-outline":
-          "bg-background border-border text-destructive-foreground dark:bg-input/30",
       },
       size: {
         xs: "px-0.5 py-0.25 text-[0.6rem] leading-none h-3.5 min-w-4 gap-1",

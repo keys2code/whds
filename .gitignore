@@ -26,6 +26,8 @@ coverage
 out/
 build
 dist
+apps/storybook/storybook-static/
+apps/design-registry/public/r/
 
 
 # Debug
