@@ -8,12 +8,13 @@ import {
 import { dirname, join, parse } from "node:path"
 import { fileURLToPath } from "node:url"
 
+import { baseLayerCss, themeVars } from "../../../packages/tailwind-preset/src/foundation.mjs"
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const appDir = join(__dirname, "..")
 const rootDir = join(appDir, "..", "..")
 const uiComponentsDir = join(rootDir, "packages", "ui", "src", "components")
-const tokensDir = join(rootDir, "packages", "tokens", "src")
-const accentsDir = join(tokensDir, "accents")
+const tokensDistPath = join(rootDir, "packages", "tokens", "dist", "tokens.json")
 const itemsDir = join(appDir, "items")
 
 const registryHomepage =
@@ -42,55 +43,6 @@ const registryGroups = [
 
 const baseItemName = "whds-base"
 
-const themeVars = {
-  "color-background": "var(--background)",
-  "color-foreground": "var(--foreground)",
-  "color-card": "var(--card)",
-  "color-card-foreground": "var(--card-foreground)",
-  "color-popover": "var(--popover)",
-  "color-popover-foreground": "var(--popover-foreground)",
-  "color-primary": "var(--primary)",
-  "color-primary-foreground": "var(--primary-foreground)",
-  "color-secondary": "var(--secondary)",
-  "color-secondary-foreground": "var(--secondary-foreground)",
-  "color-muted": "var(--muted)",
-  "color-muted-foreground": "var(--muted-foreground)",
-  "color-accent": "var(--accent)",
-  "color-accent-foreground": "var(--accent-foreground)",
-  "color-destructive": "var(--destructive)",
-  "color-border": "var(--border)",
-  "color-input": "var(--input)",
-  "color-ring": "var(--ring)",
-  "color-chart-1": "var(--chart-1)",
-  "color-chart-2": "var(--chart-2)",
-  "color-chart-3": "var(--chart-3)",
-  "color-chart-4": "var(--chart-4)",
-  "color-chart-5": "var(--chart-5)",
-  "radius-sm": "calc(var(--radius) * 0.6)",
-  "radius-md": "calc(var(--radius) * 0.8)",
-  "radius-lg": "var(--radius)",
-  "radius-xl": "calc(var(--radius) * 1.4)",
-  "radius-2xl": "calc(var(--radius) * 1.8)",
-  "radius-3xl": "calc(var(--radius) * 2.2)",
-  "radius-4xl": "calc(var(--radius) * 2.6)",
-  "color-sidebar": "var(--sidebar)",
-  "color-sidebar-foreground": "var(--sidebar-foreground)",
-  "color-sidebar-primary": "var(--sidebar-primary)",
-  "color-sidebar-primary-foreground": "var(--sidebar-primary-foreground)",
-  "color-sidebar-accent": "var(--sidebar-accent)",
-  "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
-  "color-sidebar-border": "var(--sidebar-border)",
-  "color-sidebar-ring": "var(--sidebar-ring)",
-  "font-sans": "var(--font-sans)",
-  "color-warning-foreground": "var(--warning-foreground)",
-  "color-warning": "var(--warning)",
-  "color-info-foreground": "var(--info-foreground)",
-  "color-info": "var(--info)",
-  "color-success-foreground": "var(--success-foreground)",
-  "color-success": "var(--success)",
-  "color-destructive-foreground": "var(--destructive-foreground)",
-}
-
 const itemDocs = {
   "reui-badge": `Important: This registry item must be used verbatim as the canonical WHDS badge primitive.
 
@@ -115,15 +67,11 @@ function loadJson(path) {
   return JSON.parse(readFileSync(path, "utf8"))
 }
 
-function buildAccentCss() {
-  const accentFiles = readdirSync(accentsDir)
-    .filter((fileName) => fileName.endsWith(".json"))
-    .sort()
+const tokens = loadJson(tokensDistPath)
 
+function buildAccentCss() {
   return Object.fromEntries(
-    accentFiles.flatMap((fileName) => {
-      const accentName = parse(fileName).name
-      const accent = loadJson(join(accentsDir, fileName))
+    Object.entries(tokens.accents).flatMap(([accentName, accent]) => {
       const lightVars = Object.fromEntries(
         Object.entries(accent.light).map(([key, value]) => [`--${key}`, value])
       )
@@ -152,26 +100,17 @@ function buildBaseItem() {
     categories: ["base", "theme"],
     cssVars: {
       theme: themeVars,
-      light: loadJson(join(tokensDir, "light.json")),
-      dark: loadJson(join(tokensDir, "dark.json")),
+      light: tokens.light,
+      dark: tokens.dark,
     },
     css: {
       ...buildAccentCss(),
-      "@layer base": {
-        "*": {
-          "@apply border-border outline-ring/50": {},
-        },
-        body: {
-          "@apply bg-background text-foreground": {},
-        },
-      },
+      "@layer base": baseLayerCss,
     },
     meta: {
       sources: [
-        "packages/tokens/src/light.json",
-        "packages/tokens/src/dark.json",
-        "packages/tokens/src/accents/*.json",
-        "packages/tailwind-preset/build.mjs",
+        "packages/tokens/dist/tokens.json",
+        "packages/tailwind-preset/src/foundation.mjs",
       ],
     },
   }

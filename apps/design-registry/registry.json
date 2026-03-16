@@ -234,10 +234,8 @@
       },
       "meta": {
         "sources": [
-          "packages/tokens/src/light.json",
-          "packages/tokens/src/dark.json",
-          "packages/tokens/src/accents/*.json",
-          "packages/tailwind-preset/build.mjs"
+          "packages/tokens/dist/tokens.json",
+          "packages/tailwind-preset/src/foundation.mjs"
         ]
       }
     },

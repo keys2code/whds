@@ -11,7 +11,6 @@
   ],
   "exports": {
     "./css-vars.css": "./dist/css-vars.css",
-    "./tailwind-theme.css": "./dist/tailwind-theme.css",
     "./tokens.json": "./dist/tokens.json"
   }
 }
