@@ -81,7 +81,7 @@ export const WithDismissButton: Story = {
       <Button
         variant="ghost"
         size="icon"
-        className="size-2.5 hover:bg-transparent"
+        className="hover:bg-transparent size-2.5 sm:size-2.5"
       >
         <XIcon />
       </Button>
