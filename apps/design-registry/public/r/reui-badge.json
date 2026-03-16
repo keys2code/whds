@@ -9,9 +9,7 @@
     "clsx",
     "tailwind-merge"
   ],
-  "registryDependencies": [
-    "whds-base"
-  ],
+  "registryDependencies": ["whds-base"],
   "files": [
     {
       "path": "items/reui-badge/badge.tsx",
@@ -28,9 +26,6 @@
     "source": "packages/ui/src/components/reui/badge.tsx"
   },
   "docs": "Important: This registry item must be used verbatim as the canonical WHDS badge primitive.\n\nDo not normalize or simplify the API.\nDo not rename `default` size to `md`.\nDo not collapse the size scale.\nDo not remove the `xl` size.\nDo not replace this with a generic shadcn badge implementation.\n\nThe only valid size options are:\n- `xs`\n- `sm`\n- `default`\n- `lg`\n- `xl`\n\nPreserve all existing variants and exports from the source component.\nUse `whds-base` as the styling foundation.",
-  "categories": [
-    "ui",
-    "reui"
-  ],
+  "categories": ["ui", "reui"],
   "type": "registry:ui"
 }
