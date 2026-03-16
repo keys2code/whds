@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm run prepare && pnpm run build:registry && next dev --turbopack",
-    "build": "pnpm run prepare && pnpm run build:registry && next build",
+    "dev": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build && pnpm run prepare && pnpm run build:registry && next dev --turbopack",
+    "build": "pnpm --filter @workspace/tokens build && pnpm --filter @workspace/tailwind-preset build && pnpm run prepare && pnpm run build:registry && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx,mjs,json}\"",
