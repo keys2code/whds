@@ -91,6 +91,26 @@ const themeVars = {
   "color-destructive-foreground": "var(--destructive-foreground)",
 }
 
+const itemDocs = {
+  "reui-badge": `Important: This registry item must be used verbatim as the canonical WHDS badge primitive.
+
+Do not normalize or simplify the API.
+Do not rename \`default\` size to \`md\`.
+Do not collapse the size scale.
+Do not remove the \`xl\` size.
+Do not replace this with a generic shadcn badge implementation.
+
+The only valid size options are:
+- \`xs\`
+- \`sm\`
+- \`default\`
+- \`lg\`
+- \`xl\`
+
+Preserve all existing variants and exports from the source component.
+Use \`whds-base\` as the styling foundation.`,
+}
+
 function loadJson(path) {
   return JSON.parse(readFileSync(path, "utf8"))
 }
@@ -229,6 +249,7 @@ function buildItem(componentFile, group) {
     type: "registry:ui",
     title: titleFromName(itemName),
     description: `${titleFromName(itemName)} from the WHDS design system.`,
+    docs: itemDocs[itemName],
     categories: group.categories,
     dependencies: Array.from(dependencySet).sort(),
     registryDependencies: [baseItemName],
