@@ -242,8 +242,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@keys2design/whds-tailwind-preset':
-        specifier: workspace:*
-        version: link:../tailwind-preset
+        specifier: ^0.1.0
+        version: 0.1.0(@types/node@25.2.3)(typescript@5.9.3)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1427,6 +1427,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@keys2design/whds-tailwind-preset@0.1.0':
+    resolution: {integrity: sha512-vOgpOG4sWqZ1dUj7LRfwaobvPGjDyQH7myN4exYNZogZaVpPl6Oj7AfLOd/Mb5Fy3CZ6hEKaxHhWn3lXxLn48A==}
 
   '@mdx-js/react@3.1.1':
     resolution: {integrity: sha512-f++rKLQgUVYDAtECQ6fn/is15GkEH9+nZPM3MS0RcxVqoTfawHvDlSCH7JbMhAM6uJ32v3eXLvLmLvjGu7PTQw==}
@@ -6692,6 +6695,18 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@keys2design/whds-tailwind-preset@0.1.0(@types/node@25.2.3)(typescript@5.9.3)':
+    dependencies:
+      shadcn: 4.0.5(@types/node@25.2.3)(typescript@5.9.3)
+      tailwindcss: 4.1.18
+      tw-animate-css: 1.4.0
+    transitivePeerDependencies:
+      - '@cfworker/json-schema'
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - typescript
 
   '@mdx-js/react@3.1.1(@types/react@19.2.14)(react@19.2.4)':
     dependencies:
