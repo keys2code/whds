@@ -34,4 +34,4 @@ pnpm release:pack
 pnpm publish:packages
 ```
 
-The release build still generates UI package styles from the internal `packages/tailwind-preset` package, but only `@keys2design/whds-ui` needs to be published.
+The release build still generates UI package styles from the internal `packages/tailwind-preset` package, but only `@keys2design/whds-ui` needs to be published. The current publish flow uses `--access public`.
