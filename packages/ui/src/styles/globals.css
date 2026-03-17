@@ -1,5 +1,3 @@
-@import "@keys2design/whds-tailwind-preset/styles.css";
+@import "./theme.css";
 
-@source "../../../apps/**/*.{ts,tsx}";
-@source "../../../components/**/*.{ts,tsx}";
-@source "../**/*.{ts,tsx}";
+@source "./**/*.{ts,tsx}";

@@ -2,7 +2,7 @@
   "name": "@keys2design/whds-tailwind-preset",
   "version": "0.1.1",
   "description": "WHDS Tailwind CSS preset and generated design-system styles.",
-  "private": false,
+  "private": true,
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
@@ -28,9 +28,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "restricted"
-  },
   "exports": {
     ".": "./dist/styles.css",
     "./styles.css": "./dist/styles.css"

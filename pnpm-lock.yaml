@@ -241,9 +241,6 @@ importers:
       '@base-ui/react':
         specifier: ^1.2.0
         version: 1.2.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@keys2design/whds-tailwind-preset':
-        specifier: workspace:^0.1.1
-        version: link:../tailwind-preset
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -256,9 +253,15 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
+      shadcn:
+        specifier: ^4.0.5
+        version: 4.0.5(@types/node@25.2.3)(typescript@5.9.3)
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
+      tw-animate-css:
+        specifier: ^1.4.0
+        version: 1.4.0
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.18

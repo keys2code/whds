@@ -5,7 +5,7 @@ WHDS React UI components for buttons, badges, and switches.
 ## Installation
 
 ```bash
-npm install @keys2design/whds-ui @keys2design/whds-tailwind-preset react react-dom
+npm install @keys2design/whds-ui react react-dom
 ```
 
 ## Setup
@@ -48,6 +48,6 @@ import { Badge } from "@keys2design/whds-ui/components/reui/badge"
 ## Included exports
 
 - Root entry: `@keys2design/whds-ui`
-- Styles: `@keys2design/whds-ui/globals.css`
+- Styles: `@keys2design/whds-ui/globals.css` (theme included)
 - PostCSS config: `@keys2design/whds-ui/postcss.config`
 - Component subpaths under `@keys2design/whds-ui/components/*`
