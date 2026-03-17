@@ -242,6 +242,37 @@
       }
     },
     {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Avatar from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "items/avatar/avatar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "items/avatar/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/avatar.tsx"
+      }
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -270,6 +301,66 @@
       ],
       "meta": {
         "source": "packages/ui/src/components/button.tsx"
+      }
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Label from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "items/label/label.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "items/label/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/label.tsx"
+      }
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Separator from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "items/separator/separator.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "items/separator/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/separator.tsx"
       }
     },
     {
