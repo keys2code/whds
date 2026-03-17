@@ -1,6 +1,6 @@
 # `@keys2design/whds-ui`
 
-WHDS React UI components for buttons, badges, and switches.
+WHDS React UI components for buttons, badges, switches, avatars, labels, and separators.
 
 ## Installation
 
@@ -19,13 +19,26 @@ import "@keys2design/whds-ui/globals.css"
 ## Usage
 
 ```tsx
-import { Button, Switch, Badge } from "@keys2design/whds-ui"
+import {
+  Avatar,
+  AvatarFallback,
+  Badge,
+  Button,
+  Label,
+  Separator,
+  Switch,
+} from "@keys2design/whds-ui"
 
 export function Example() {
   return (
     <div className="flex items-center gap-3">
+      <Avatar>
+        <AvatarFallback>WH</AvatarFallback>
+      </Avatar>
+      <Label htmlFor="notifications">Notifications</Label>
+      <Switch id="notifications" />
+      <Separator orientation="vertical" />
       <Badge variant="secondary">New</Badge>
-      <Switch />
       <Button>Continue</Button>
     </div>
   )
@@ -38,6 +51,9 @@ You can also import components by subpath:
 import { Button } from "@keys2design/whds-ui/components/button"
 import { Switch } from "@keys2design/whds-ui/components/switch"
 import { Badge } from "@keys2design/whds-ui/components/reui/badge"
+import { Avatar } from "@keys2design/whds-ui/components/avatar"
+import { Label } from "@keys2design/whds-ui/components/label"
+import { Separator } from "@keys2design/whds-ui/components/separator"
 ```
 
 ## Peer dependencies
