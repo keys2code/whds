@@ -153,6 +153,13 @@ function rewriteSource(code) {
   return code.replaceAll('@keys2design/whds-ui/lib/utils', "./utils")
 }
 
+function getLocalHelperFiles(sourceDir, fileName) {
+  return readdirSync(sourceDir)
+    .filter((entry) => entry.startsWith(`${fileName}-`))
+    .filter((entry) => entry.endsWith(".ts") || entry.endsWith(".tsx"))
+    .sort()
+}
+
 function buildItem(componentFile, group) {
   const sourcePath = join(group.sourceDir, componentFile)
   const fileName = parse(componentFile).name
@@ -160,6 +167,7 @@ function buildItem(componentFile, group) {
   const outputDir = join(itemsDir, itemName)
   const componentTarget = `${fileName}.tsx`
   const sourceCode = rewriteSource(readFileSync(sourcePath, "utf8"))
+  const localHelperFiles = getLocalHelperFiles(group.sourceDir, fileName)
 
   mkdirSync(outputDir, { recursive: true })
   writeFileSync(join(outputDir, componentTarget), sourceCode)
@@ -169,6 +177,19 @@ function buildItem(componentFile, group) {
   for (const specifier of extractImports(sourceCode)) {
     if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
       dependencySet.add(getPackageName(specifier))
+    }
+  }
+
+  for (const helperFile of localHelperFiles) {
+    const helperPath = join(group.sourceDir, helperFile)
+    const helperCode = rewriteSource(readFileSync(helperPath, "utf8"))
+
+    writeFileSync(join(outputDir, helperFile), helperCode)
+
+    for (const specifier of extractImports(helperCode)) {
+      if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
+        dependencySet.add(getPackageName(specifier))
+      }
     }
   }
 
@@ -197,6 +218,10 @@ function buildItem(componentFile, group) {
         path: `items/${itemName}/${componentTarget}`,
         type: "registry:ui",
       },
+      ...localHelperFiles.map((helperFile) => ({
+        path: `items/${itemName}/${helperFile}`,
+        type: "registry:lib",
+      })),
       ...sharedFiles.map((sharedFile) => ({
         path: `items/${itemName}/${sharedFile.target}`,
         type: sharedFile.type,
