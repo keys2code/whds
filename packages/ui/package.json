@@ -1,6 +1,6 @@
 {
   "name": "@keys2design/whds-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "WHDS React UI components for buttons, badges, and switches.",
   "type": "module",
   "private": false,
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
-    "@keys2design/whds-tailwind-preset": "^0.1.0",
+    "@keys2design/whds-tailwind-preset": "workspace:^0.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.5.0"

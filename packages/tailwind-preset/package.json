@@ -1,6 +1,6 @@
 {
   "name": "@keys2design/whds-tailwind-preset",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "WHDS Tailwind CSS preset and generated design-system styles.",
   "private": false,
   "license": "UNLICENSED",
