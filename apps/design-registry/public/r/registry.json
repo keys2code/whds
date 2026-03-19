@@ -242,6 +242,37 @@
       }
     },
     {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Alert from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "items/alert/alert.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "items/alert/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/alert.tsx"
+      }
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -301,6 +332,37 @@
       ],
       "meta": {
         "source": "packages/ui/src/components/button.tsx"
+      }
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Input from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "items/input/input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "items/input/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/input.tsx"
       }
     },
     {
