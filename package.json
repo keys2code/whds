@@ -8,7 +8,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "release:build": "pnpm --filter @workspace/tokens build && pnpm --filter @keys2design/whds-tailwind-preset build && pnpm --filter @keys2design/whds-ui build",
-    "release:verify": "pnpm run release:build && pnpm --filter @keys2design/whds-ui typecheck && pnpm --filter web typecheck && pnpm --filter storybook typecheck && pnpm --filter @workspace/design-registry typecheck",
+    "release:verify": "pnpm run release:build && pnpm --filter @keys2design/whds-ui typecheck && pnpm --filter web typecheck && pnpm --filter storybook typecheck && pnpm --filter @workspace/design-registry typecheck && pnpm --filter docs build",
     "release:pack": "rm -f packages/ui/*.tgz && pnpm run release:verify && pnpm -C packages/ui pack",
     "format": "turbo format",
     "publish:ui": "pnpm run release:pack && sh -c 'cd packages/ui && npm publish ./keys2design-whds-ui-*.tgz --access public'",

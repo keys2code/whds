@@ -1,0 +1,33 @@
+---
+title: WHDS Docs
+description: Explore the WHDS design system, package setup, and component building blocks.
+---
+
+import { Badge, Button, Separator } from "@keys2design/whds-ui"
+
+# WHDS Docs
+
+This docs app is powered by Fumadocs and renders the published `@keys2design/whds-ui` package styles directly inside the examples.
+
+[Browse component examples](./components.mdx)
+
+## Quick Preview
+
+<div className="not-prose flex flex-wrap items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-sm">
+  <Badge variant="default">Beta</Badge>
+  <Badge variant="outline">Outline</Badge>
+  <Button variant="outline" size="sm">
+    Secondary action
+  </Button>
+  <Button variant="default" size="sm">
+    Primary action
+  </Button>
+</div>
+
+<Separator className="my-8" />
+
+## What This Site Covers
+
+- Package installation and usage for `@keys2design/whds-ui`
+- Live component examples styled with the shared WHDS CSS
+- A standalone docs app that can be deployed from `apps/docs`

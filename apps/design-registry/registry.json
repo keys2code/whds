@@ -418,10 +418,6 @@
           "type": "registry:ui"
         },
         {
-          "path": "items/reui-badge/badge-variants.ts",
-          "type": "registry:lib"
-        },
-        {
           "path": "items/reui-badge/utils.ts",
           "type": "registry:lib"
         }

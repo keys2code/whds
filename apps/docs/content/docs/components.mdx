@@ -1,0 +1,67 @@
+---
+title: Components
+description: A starter page that demonstrates WHDS components inside MDX content.
+---
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Badge,
+  Button,
+  Label,
+  Separator,
+  Switch,
+} from "@keys2design/whds-ui"
+
+# Components
+
+Because the docs app imports `@keys2design/whds-ui/globals.css`, these examples render with the same tokens and styles that consumers get in their apps.
+
+## Controls
+
+<div className="not-prose flex flex-wrap items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-sm">
+  <Button variant="default" size="sm">
+    Default
+  </Button>
+  <Button variant="outline" size="sm">
+    Outline
+  </Button>
+  <Badge variant="secondary">Secondary</Badge>
+  <Badge variant="success">Success</Badge>
+</div>
+
+<Separator className="my-8" />
+
+## Form Example
+
+<div className="not-prose max-w-md space-y-4 rounded-xl border border-border bg-card p-5 shadow-sm">
+  <div className="space-y-2">
+    <Label htmlFor="release-notes">Release notes</Label>
+    <div className="flex items-center gap-3">
+      <Switch id="release-notes" defaultChecked />
+      <span className="text-sm text-muted-foreground">
+        Email me when new WHDS versions are published.
+      </span>
+    </div>
+  </div>
+
+  <Separator />
+
+  <div className="flex items-center gap-3">
+    <Avatar>
+      <AvatarImage
+        alt="Phil"
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80"
+      />
+      <AvatarFallback>PH</AvatarFallback>
+    </Avatar>
+
+    <div className="space-y-1">
+      <p className="text-sm font-medium">WHDS Maintainer</p>
+      <p className="text-sm text-muted-foreground">
+        Component examples can live directly alongside prose.
+      </p>
+    </div>
+  </div>
+</div>

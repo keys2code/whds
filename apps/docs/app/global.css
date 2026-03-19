@@ -1,0 +1,9 @@
+@import "fumadocs-ui/style.css";
+
+@source "../**/*.{ts,tsx,mdx}";
+@source "../content/docs/**/*.mdx";
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
