@@ -1,6 +1,12 @@
 export { Button, buttonVariants } from "./components/button.js"
 export { Switch } from "./components/switch.js"
 export {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "./components/alert.js"
+export {
   Avatar,
   AvatarImage,
   AvatarFallback,

@@ -43,6 +43,7 @@ writeFileSync(
   `@import "./theme.css";
 
 @source "./**/*.{js,mjs}";
+@source "../src/**/*.{ts,tsx}";
 `
 )
 
