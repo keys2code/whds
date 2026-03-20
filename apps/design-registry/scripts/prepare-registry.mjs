@@ -16,7 +16,9 @@ const appDir = join(__dirname, "..")
 const rootDir = join(appDir, "..", "..")
 const uiComponentsDir = join(rootDir, "packages", "ui", "src", "components")
 const tokensDistPath = join(rootDir, "packages", "tokens", "dist", "tokens.json")
-const itemsDir = join(appDir, "items")
+
+/** Must match `style` on base item and consumer registry layout. */
+const REGISTRY_STYLE = "base-nova"
 
 const registryHomepage =
   process.env.REGISTRY_HOMEPAGE ?? "http://localhost:3000"
@@ -24,7 +26,7 @@ const registryHomepage =
 const sharedFiles = [
   {
     source: join(rootDir, "packages", "ui", "src", "lib", "utils.ts"),
-    target: "utils.ts",
+    target: "lib/utils.ts",
     type: "registry:lib",
   },
 ]
@@ -43,10 +45,7 @@ const registryGroups = [
 ]
 
 const baseItemName = "whds-base"
-const skippedRegistryComponents = new Set([
-  "field.tsx",
-  "input-group.tsx",
-])
+const skippedRegistryComponents = new Set()
 
 const itemDocs = {
   "reui-badge": `Important: This registry item must be used verbatim as the canonical WHDS badge primitive.
@@ -99,7 +98,7 @@ function buildBaseItem() {
     title: "WHDS Base",
     description:
       "Foundation tokens, theme mappings, and base styles for the WHDS design system.",
-    style: "base-nova",
+    style: REGISTRY_STYLE,
     iconLibrary: "phosphor",
     baseColor: "zinc",
     categories: ["base", "theme"],
@@ -148,14 +147,81 @@ function extractImports(code) {
   return Array.from(matches, (match) => match[1])
 }
 
-function rewriteSource(code) {
-  if (code.includes("@keys2design/whds-ui/components/")) {
+/**
+ * Rewrites WHDS package imports to @/registry/{style}/… for emitted registry files.
+ */
+function rewriteRegistryImports(code, currentItemName) {
+  let out = code.replaceAll(
+    "@keys2design/whds-ui/lib/utils",
+    `@/registry/${REGISTRY_STYLE}/${currentItemName}/lib/utils`
+  )
+
+  const componentImportRe =
+    /from\s+["']@keys2design\/whds-ui\/components\/([\w/-]+)["']/g
+  out = out.replace(componentImportRe, (_, pathPart) => {
+    let registryPath
+    if (pathPart.startsWith("reui/")) {
+      const base = pathPart.slice("reui/".length)
+      const depItemName = `reui-${base}`
+      registryPath = `@/registry/${REGISTRY_STYLE}/${depItemName}/components/${base}`
+    } else if (!pathPart.includes("/")) {
+      registryPath = `@/registry/${REGISTRY_STYLE}/${pathPart}/components/${pathPart}`
+    } else {
+      throw new Error(
+        `Registry generator: unhandled @keys2design/whds-ui/components path "${pathPart}"`
+      )
+    }
+    return `from "${registryPath}"`
+  })
+
+  if (out.includes("@keys2design/whds-ui/components/")) {
     throw new Error(
-      "Registry generator does not yet support component-to-component workspace imports."
+      "Registry generator: leftover @keys2design/whds-ui/components/ import after rewrite"
     )
   }
 
-  return code.replaceAll('@keys2design/whds-ui/lib/utils', "./utils")
+  return out
+}
+
+const registryDepRe = new RegExp(
+  `@/registry/${REGISTRY_STYLE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/([^/]+)/`,
+  "g"
+)
+
+function collectRegistryDependencyNames(code, currentItemName) {
+  const names = new Set()
+  for (const match of code.matchAll(registryDepRe)) {
+    const name = match[1]
+    if (name !== currentItemName) {
+      names.add(name)
+    }
+  }
+  return names
+}
+
+function collectRegistryDependencies(codes, currentItemName) {
+  const names = new Set([baseItemName])
+  for (const c of codes) {
+    for (const n of collectRegistryDependencyNames(c, currentItemName)) {
+      names.add(n)
+    }
+  }
+  return Array.from(names).sort()
+}
+
+function isNpmDependencySpecifier(specifier) {
+  if (specifier.startsWith(".")) return false
+  if (specifier.startsWith("@keys2design/whds-ui")) return false
+  if (specifier.startsWith(`@/registry/`)) return false
+  return true
+}
+
+function addNpmDependenciesFromCode(code, dependencySet) {
+  for (const specifier of extractImports(code)) {
+    if (isNpmDependencySpecifier(specifier)) {
+      dependencySet.add(getPackageName(specifier))
+    }
+  }
 }
 
 function getLocalHelperFiles(sourceDir, fileName) {
@@ -166,49 +232,64 @@ function getLocalHelperFiles(sourceDir, fileName) {
     .sort()
 }
 
+function itemFilePath(itemName, ...segments) {
+  return join("registry", REGISTRY_STYLE, itemName, ...segments).replaceAll(
+    "\\",
+    "/"
+  )
+}
+
 function buildItem(componentFile, group) {
   const sourcePath = join(group.sourceDir, componentFile)
   const fileName = parse(componentFile).name
   const itemName = `${group.prefix}${fileName}`
-  const outputDir = join(itemsDir, itemName)
+  const outputDir = join(appDir, "registry", REGISTRY_STYLE, itemName)
+  const componentsDir = join(outputDir, "components")
+  const libDir = join(outputDir, "lib")
   const componentTarget = `${fileName}.tsx`
-  const sourceCode = rewriteSource(readFileSync(sourcePath, "utf8"))
+
+  const rawMain = readFileSync(sourcePath, "utf8")
+  const sourceCode = rewriteRegistryImports(rawMain, itemName)
   const localHelperFiles = getLocalHelperFiles(group.sourceDir, fileName)
 
-  mkdirSync(outputDir, { recursive: true })
-  writeFileSync(join(outputDir, componentTarget), sourceCode)
+  mkdirSync(componentsDir, { recursive: true })
+  mkdirSync(libDir, { recursive: true })
+  writeFileSync(join(componentsDir, componentTarget), sourceCode)
 
-  const dependencySet = new Set()
-
-  for (const specifier of extractImports(sourceCode)) {
-    if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
-      dependencySet.add(getPackageName(specifier))
-    }
-  }
+  const allRewrittenCodes = [sourceCode]
 
   for (const helperFile of localHelperFiles) {
     const helperPath = join(group.sourceDir, helperFile)
-    const helperCode = rewriteSource(readFileSync(helperPath, "utf8"))
-
-    writeFileSync(join(outputDir, helperFile), helperCode)
-
-    for (const specifier of extractImports(helperCode)) {
-      if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
-        dependencySet.add(getPackageName(specifier))
-      }
-    }
+    const rawHelper = readFileSync(helperPath, "utf8")
+    const helperCode = rewriteRegistryImports(rawHelper, itemName)
+    allRewrittenCodes.push(helperCode)
+    writeFileSync(join(componentsDir, helperFile), helperCode)
   }
 
   for (const sharedFile of sharedFiles) {
     const sharedCode = readFileSync(sharedFile.source, "utf8")
     writeFileSync(join(outputDir, sharedFile.target), sharedCode)
-
-    for (const specifier of extractImports(sharedCode)) {
-      if (!specifier.startsWith(".") && !specifier.startsWith("@keys2design/whds-ui/")) {
-        dependencySet.add(getPackageName(specifier))
-      }
-    }
   }
+
+  const dependencySet = new Set()
+  addNpmDependenciesFromCode(rawMain, dependencySet)
+  for (const helperFile of localHelperFiles) {
+    addNpmDependenciesFromCode(
+      readFileSync(join(group.sourceDir, helperFile), "utf8"),
+      dependencySet
+    )
+  }
+  for (const sharedFile of sharedFiles) {
+    addNpmDependenciesFromCode(
+      readFileSync(sharedFile.source, "utf8"),
+      dependencySet
+    )
+  }
+
+  const registryDependencies = collectRegistryDependencies(
+    allRewrittenCodes,
+    itemName
+  )
 
   return {
     name: itemName,
@@ -218,18 +299,18 @@ function buildItem(componentFile, group) {
     docs: itemDocs[itemName],
     categories: group.categories,
     dependencies: Array.from(dependencySet).sort(),
-    registryDependencies: [baseItemName],
+    registryDependencies,
     files: [
       {
-        path: `items/${itemName}/${componentTarget}`,
+        path: itemFilePath(itemName, "components", componentTarget),
         type: "registry:ui",
       },
       ...localHelperFiles.map((helperFile) => ({
-        path: `items/${itemName}/${helperFile}`,
-        type: "registry:lib",
+        path: itemFilePath(itemName, "components", helperFile),
+        type: "registry:ui",
       })),
       ...sharedFiles.map((sharedFile) => ({
-        path: `items/${itemName}/${sharedFile.target}`,
+        path: itemFilePath(itemName, ...sharedFile.target.split("/")),
         type: sharedFile.type,
       })),
     ],
@@ -246,8 +327,11 @@ function getComponentFiles(group) {
     .sort()
 }
 
-rmSync(itemsDir, { recursive: true, force: true })
-mkdirSync(itemsDir, { recursive: true })
+const registryDir = join(appDir, "registry")
+const legacyItemsDir = join(appDir, "items")
+
+rmSync(registryDir, { recursive: true, force: true })
+rmSync(legacyItemsDir, { recursive: true, force: true })
 
 const items = [
   buildBaseItem(),

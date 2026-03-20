@@ -225,6 +225,7 @@
   --sidebar-primary-foreground: oklch(0.98 0.02 27);
 }
 
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

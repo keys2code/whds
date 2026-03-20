@@ -262,11 +262,11 @@
       ],
       "files": [
         {
-          "path": "items/alert/alert.tsx",
+          "path": "registry/base-nova/alert/components/alert.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/alert/utils.ts",
+          "path": "registry/base-nova/alert/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -293,11 +293,11 @@
       ],
       "files": [
         {
-          "path": "items/avatar/avatar.tsx",
+          "path": "registry/base-nova/avatar/components/avatar.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/avatar/utils.ts",
+          "path": "registry/base-nova/avatar/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -324,11 +324,11 @@
       ],
       "files": [
         {
-          "path": "items/button/button.tsx",
+          "path": "registry/base-nova/button/components/button.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/button/utils.ts",
+          "path": "registry/base-nova/button/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -354,16 +354,83 @@
       ],
       "files": [
         {
-          "path": "items/card/card.tsx",
+          "path": "registry/base-nova/card/components/card.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/card/utils.ts",
+          "path": "registry/base-nova/card/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
       "meta": {
         "source": "packages/ui/src/components/card.tsx"
+      }
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Field from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "label",
+        "separator",
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/field/components/field.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/field/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/field.tsx"
+      }
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Input Group from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "textarea",
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/input-group/components/input-group.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/input-group/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/input-group.tsx"
       }
     },
     {
@@ -376,20 +443,27 @@
       ],
       "dependencies": [
         "@base-ui/react",
+        "class-variance-authority",
         "clsx",
         "react",
         "tailwind-merge"
       ],
       "registryDependencies": [
+        "button",
+        "textarea",
         "whds-base"
       ],
       "files": [
         {
-          "path": "items/input/input.tsx",
+          "path": "registry/base-nova/input/components/input.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/input/utils.ts",
+          "path": "registry/base-nova/input/components/input-group.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/input/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -414,11 +488,11 @@
       ],
       "files": [
         {
-          "path": "items/kbd/kbd.tsx",
+          "path": "registry/base-nova/kbd/components/kbd.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/kbd/utils.ts",
+          "path": "registry/base-nova/kbd/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -444,11 +518,11 @@
       ],
       "files": [
         {
-          "path": "items/label/label.tsx",
+          "path": "registry/base-nova/label/components/label.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/label/utils.ts",
+          "path": "registry/base-nova/label/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -474,11 +548,11 @@
       ],
       "files": [
         {
-          "path": "items/separator/separator.tsx",
+          "path": "registry/base-nova/separator/components/separator.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/separator/utils.ts",
+          "path": "registry/base-nova/separator/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -504,11 +578,11 @@
       ],
       "files": [
         {
-          "path": "items/switch/switch.tsx",
+          "path": "registry/base-nova/switch/components/switch.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/switch/utils.ts",
+          "path": "registry/base-nova/switch/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -534,11 +608,11 @@
       ],
       "files": [
         {
-          "path": "items/textarea/textarea.tsx",
+          "path": "registry/base-nova/textarea/components/textarea.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/textarea/utils.ts",
+          "path": "registry/base-nova/textarea/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
@@ -567,11 +641,11 @@
       ],
       "files": [
         {
-          "path": "items/reui-badge/badge.tsx",
+          "path": "registry/base-nova/reui-badge/components/badge.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "items/reui-badge/utils.ts",
+          "path": "registry/base-nova/reui-badge/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
