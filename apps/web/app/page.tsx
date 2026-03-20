@@ -6,7 +6,15 @@ import {
   AlertTitle,
 } from "@keys2design/whds-ui/components/alert"
 import { Button } from "@keys2design/whds-ui/components/button"
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@keys2design/whds-ui/components/field"
 import { Input } from "@keys2design/whds-ui/components/input"
+import { Kbd, KbdGroup } from "@keys2design/whds-ui/components/kbd"
 import { Label } from "@keys2design/whds-ui/components/label"
 import { Badge as ReuiBadge } from "@keys2design/whds-ui/components/reui/badge"
 import { Switch } from "@keys2design/whds-ui/components/switch"
@@ -64,6 +72,49 @@ export default function Page() {
             Use inputs, labels, and alerts together to prototype realistic form
             flows.
           </p>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="demo-invite">Invite teammate</Label>
+          <div className="flex items-center gap-2">
+            <Input
+              id="demo-invite"
+              type="email"
+              placeholder="name@company.com"
+              className="flex-1"
+            />
+            <Button size="sm">Send invite</Button>
+          </div>
+          <p className="text-muted-foreground text-xs leading-relaxed">
+            Input groups work well for quick actions like invites, coupon codes,
+            and search controls.
+          </p>
+        </div>
+        <FieldGroup className="gap-3">
+          <Field>
+            <FieldLabel htmlFor="demo-project-name">Field example</FieldLabel>
+            <Input
+              id="demo-project-name"
+              defaultValue="WHDS Marketing Site"
+              aria-invalid="true"
+            />
+            <FieldDescription>
+              Use field primitives when you want labels, descriptions, and
+              validation to read as one cohesive unit.
+            </FieldDescription>
+            <FieldError>Project names need to stay under 20 characters.</FieldError>
+          </Field>
+        </FieldGroup>
+        <div className="bg-card/80 flex items-center justify-between rounded-md border p-3 shadow-xs">
+          <div className="space-y-1">
+            <p className="font-medium">Kbd example</p>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              Show keyboard shortcuts inline anywhere you need compact guidance.
+            </p>
+          </div>
+          <KbdGroup aria-label="Keyboard shortcut for command palette">
+            <Kbd>Cmd</Kbd>
+            <Kbd>K</Kbd>
+          </KbdGroup>
         </div>
       </div>
     </div>

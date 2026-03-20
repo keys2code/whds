@@ -6,9 +6,10 @@ import {
   writeFileSync,
 } from "node:fs"
 import { dirname, join, parse } from "node:path"
+import process from "node:process"
 import { fileURLToPath } from "node:url"
 
-import { baseLayerCss, themeVars } from "../../../packages/tailwind-preset/src/foundation.mjs"
+import { baseLayerCss, themeVars } from "../../../packages/ui/src/styles/foundation.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const appDir = join(__dirname, "..")
@@ -42,6 +43,10 @@ const registryGroups = [
 ]
 
 const baseItemName = "whds-base"
+const skippedRegistryComponents = new Set([
+  "field.tsx",
+  "input-group.tsx",
+])
 
 const itemDocs = {
   "reui-badge": `Important: This registry item must be used verbatim as the canonical WHDS badge primitive.
@@ -110,7 +115,7 @@ function buildBaseItem() {
     meta: {
       sources: [
         "packages/tokens/dist/tokens.json",
-        "packages/tailwind-preset/src/foundation.mjs",
+        "packages/ui/src/styles/foundation.mjs",
       ],
     },
   }
@@ -157,6 +162,7 @@ function getLocalHelperFiles(sourceDir, fileName) {
   return readdirSync(sourceDir)
     .filter((entry) => entry.startsWith(`${fileName}-`))
     .filter((entry) => entry.endsWith(".ts") || entry.endsWith(".tsx"))
+    .filter((entry) => !skippedRegistryComponents.has(entry))
     .sort()
 }
 
@@ -236,6 +242,7 @@ function buildItem(componentFile, group) {
 function getComponentFiles(group) {
   return readdirSync(group.sourceDir)
     .filter((fileName) => fileName.endsWith(".tsx"))
+    .filter((fileName) => !skippedRegistryComponents.has(fileName))
     .sort()
 }
 

@@ -2,41 +2,53 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
+import { baseLayerCss, buildThemeCss } from "./src/styles/foundation.mjs"
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const distDir = join(__dirname, "dist")
 const srcStylesDir = join(__dirname, "src", "styles")
-const presetStylesPath = join(__dirname, "..", "tailwind-preset", "dist", "styles.css")
-const twAnimateStylesPath = join(
-  __dirname,
-  "node_modules",
-  "tw-animate-css",
-  "dist",
-  "tw-animate.css"
-)
-const shadcnStylesPath = join(
-  __dirname,
-  "node_modules",
-  "shadcn",
-  "dist",
-  "tailwind.css"
-)
+const tokensCssVarsPath = join(__dirname, "..", "tokens", "dist", "css-vars.css")
 
-function inlineCssImports(source) {
-  const twAnimateStyles = readFileSync(twAnimateStylesPath, "utf8")
-  const shadcnStyles = readFileSync(shadcnStylesPath, "utf8")
+function serializeCssRules(rulesBySelector) {
+  return Object.entries(rulesBySelector)
+    .map(([selector, rules]) => {
+      const body = Object.entries(rules)
+        .map(([declaration, value]) =>
+          typeof value === "object"
+            ? `    ${declaration};`
+            : `    ${declaration}: ${value};`
+        )
+        .join("\n")
 
-  return source
-    .replace('@import "tw-animate-css";', twAnimateStyles)
-    .replace('@import "shadcn/tailwind.css";', shadcnStyles)
+      return `  ${selector} {\n${body}\n  }`
+    })
+    .join("\n")
 }
 
 mkdirSync(distDir, { recursive: true })
 mkdirSync(srcStylesDir, { recursive: true })
 
-const presetStyles = inlineCssImports(readFileSync(presetStylesPath, "utf8"))
+const cssVarsCss = readFileSync(tokensCssVarsPath, "utf8")
+const themeCss = buildThemeCss()
+const baseLayerCssText = serializeCssRules(baseLayerCss)
 
-writeFileSync(join(distDir, "theme.css"), presetStyles)
-writeFileSync(join(srcStylesDir, "theme.css"), presetStyles)
+const stylesCss = `@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+${themeCss}
+
+${cssVarsCss}
+
+@layer base {
+${baseLayerCssText}
+}
+`
+
+writeFileSync(join(distDir, "theme.css"), stylesCss)
+writeFileSync(join(srcStylesDir, "theme.css"), stylesCss)
 
 writeFileSync(
   join(distDir, "globals.css"),

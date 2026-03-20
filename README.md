@@ -4,8 +4,7 @@ This repo contains the WHDS design-system packages and the local apps used to de
 
 ## Packages
 
-- `@keys2design/whds-ui`: React components such as `Button`, `Badge`, and `Switch`
-- `@keys2design/whds-tailwind-preset`: shared Tailwind CSS preset and generated design-system styles used internally by the UI package build
+- `@keys2design/whds-ui`: React components and the generated WHDS theme CSS consumers import via `globals.css`
 
 ## Package usage
 
@@ -34,4 +33,4 @@ pnpm release:pack
 pnpm publish:packages
 ```
 
-The release build still generates UI package styles from the internal `packages/tailwind-preset` package, but only `@keys2design/whds-ui` needs to be published. The current publish flow uses `--access public`.
+The release build now generates the theme directly from source in `packages/ui`, and only `@keys2design/whds-ui` needs to be published. The current publish flow uses `--access public`.

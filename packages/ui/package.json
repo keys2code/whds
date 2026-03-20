@@ -15,7 +15,7 @@
     "url": "https://github.com/keys2code/whds/issues"
   },
   "scripts": {
-    "build": "pnpm --dir ../tailwind-preset build && tsc -p tsconfig.build.json && node build.mjs",
+    "build": "pnpm --dir ../tokens build && tsc -p tsconfig.build.json && node build.mjs",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "prepublishOnly": "pnpm run build && pnpm run typecheck",
@@ -47,6 +47,7 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@workspace/eslint-config": "workspace:*",
+    "@workspace/tokens": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.39.2",
     "tailwindcss": "^4.1.18",

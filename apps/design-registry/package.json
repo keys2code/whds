@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter @workspace/tokens build && pnpm --filter @keys2design/whds-tailwind-preset build && pnpm run registry:prepare && pnpm run build:registry && next dev --turbopack",
-    "build": "pnpm --filter @workspace/tokens build && pnpm --filter @keys2design/whds-tailwind-preset build && pnpm run registry:prepare && pnpm run build:registry && next build",
+    "dev": "pnpm --filter @workspace/tokens build && pnpm --filter @keys2design/whds-ui build && pnpm run registry:prepare && pnpm run build:registry && next dev --turbopack",
+    "build": "pnpm --filter @workspace/tokens build && pnpm --filter @keys2design/whds-ui build && pnpm run registry:prepare && pnpm run build:registry && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx,mjs,json}\"",

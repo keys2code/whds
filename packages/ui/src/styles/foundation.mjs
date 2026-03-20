@@ -45,6 +45,8 @@ export const themeVars = {
   "color-success-foreground": "var(--success-foreground)",
   "color-success": "var(--success)",
   "color-destructive-foreground": "var(--destructive-foreground)",
+  "text-base": "0.9375rem",
+  "text-base--line-height": "calc(1.5 / 0.9375)",
   "text-sm": "0.8125rem",
   "text-sm--line-height": "calc(1.25 / 0.8125)",
 }
@@ -64,7 +66,6 @@ export function buildThemeCss() {
   )
 
   return `/* Tailwind theme mapping - import after tailwindcss */
-
 @theme inline {
 ${lines.join("\n")}
 }`
