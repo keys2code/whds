@@ -306,6 +306,38 @@
       }
     },
     {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Breadcrumb from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "@phosphor-icons/react",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/breadcrumb/components/breadcrumb.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/breadcrumb/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/breadcrumb.tsx"
+      }
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -364,6 +396,69 @@
       ],
       "meta": {
         "source": "packages/ui/src/components/card.tsx"
+      }
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "@phosphor-icons/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/checkbox/components/checkbox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/checkbox/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/checkbox.tsx"
+      }
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Dropdown Menu from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "@phosphor-icons/react",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/dropdown-menu/components/dropdown-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/dropdown-menu/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/dropdown-menu.tsx"
       }
     },
     {
@@ -469,6 +564,39 @@
       ],
       "meta": {
         "source": "packages/ui/src/components/input.tsx"
+      }
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "Item from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "separator",
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/item/components/item.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/item/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/item.tsx"
       }
     },
     {
