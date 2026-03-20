@@ -18,6 +18,7 @@ import { Kbd, KbdGroup } from "@keys2design/whds-ui/components/kbd"
 import { Label } from "@keys2design/whds-ui/components/label"
 import { Badge as ReuiBadge } from "@keys2design/whds-ui/components/reui/badge"
 import { Switch } from "@keys2design/whds-ui/components/switch"
+import { FileUpload } from "@keys2design/whds-ui/components/file-upload"
 
 export default function Page() {
   return (
@@ -116,6 +117,10 @@ export default function Page() {
             <Kbd>K</Kbd>
           </KbdGroup>
         </div>
+        
+          <FileUpload />
+        
+
       </div>
     </div>
   )
