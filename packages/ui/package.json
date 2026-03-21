@@ -1,7 +1,7 @@
 {
   "name": "@keys2design/whds-ui",
   "version": "0.1.10",
-  "description": "WHDS React UI components for buttons, badges, and switches.",
+  "description": "WHDS React UI components",
   "type": "module",
   "private": false,
   "license": "UNLICENSED",
