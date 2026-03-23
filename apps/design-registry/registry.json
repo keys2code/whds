@@ -570,23 +570,16 @@
       ],
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority",
         "clsx",
         "react",
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "button",
-        "textarea",
         "whds-base"
       ],
       "files": [
         {
           "path": "registry/base-nova/input/components/input.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "registry/base-nova/input/components/input-group.tsx",
           "type": "registry:ui"
         },
         {
