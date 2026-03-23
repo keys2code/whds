@@ -224,11 +224,23 @@ function addNpmDependenciesFromCode(code, dependencySet) {
   }
 }
 
-function getLocalHelperFiles(sourceDir, fileName) {
+function getTopLevelComponentBasenames(sourceDir) {
+  return new Set(
+    readdirSync(sourceDir)
+      .filter((f) => f.endsWith(".tsx"))
+      .filter((f) => !skippedRegistryComponents.has(f))
+      .map((f) => parse(f).name)
+  )
+}
+
+function getLocalHelperFiles(sourceDir, fileName, topLevelBasenames) {
   return readdirSync(sourceDir)
     .filter((entry) => entry.startsWith(`${fileName}-`))
     .filter((entry) => entry.endsWith(".ts") || entry.endsWith(".tsx"))
     .filter((entry) => !skippedRegistryComponents.has(entry))
+    .filter(
+      (entry) => !entry.endsWith(".tsx") || !topLevelBasenames.has(parse(entry).name)
+    )
     .sort()
 }
 
@@ -239,7 +251,7 @@ function itemFilePath(itemName, ...segments) {
   )
 }
 
-function buildItem(componentFile, group) {
+function buildItem(componentFile, group, topLevelBasenames) {
   const sourcePath = join(group.sourceDir, componentFile)
   const fileName = parse(componentFile).name
   const itemName = `${group.prefix}${fileName}`
@@ -250,7 +262,7 @@ function buildItem(componentFile, group) {
 
   const rawMain = readFileSync(sourcePath, "utf8")
   const sourceCode = rewriteRegistryImports(rawMain, itemName)
-  const localHelperFiles = getLocalHelperFiles(group.sourceDir, fileName)
+  const localHelperFiles = getLocalHelperFiles(group.sourceDir, fileName, topLevelBasenames)
 
   mkdirSync(componentsDir, { recursive: true })
   mkdirSync(libDir, { recursive: true })
@@ -335,9 +347,12 @@ rmSync(legacyItemsDir, { recursive: true, force: true })
 
 const items = [
   buildBaseItem(),
-  ...registryGroups.flatMap((group) =>
-    getComponentFiles(group).map((componentFile) => buildItem(componentFile, group))
-  ),
+  ...registryGroups.flatMap((group) => {
+    const topLevelBasenames = getTopLevelComponentBasenames(group.sourceDir)
+    return getComponentFiles(group).map((componentFile) =>
+      buildItem(componentFile, group, topLevelBasenames)
+    )
+  }),
 ]
 
 const registry = {
