@@ -29,7 +29,7 @@ interface FileUploadCompactProps {
   onFilesChange?: (files: FileWithPreview[]) => void
 }
 
-export function Pattern({
+export function FileUpload({
   maxFiles = 3,
   maxSize = 2 * 1024 * 1024, // 2MB
   accept = "image/*",
