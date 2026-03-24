@@ -271,7 +271,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/alert.tsx"
+        "source": "packages/ui/src/components/alert/index.tsx"
       }
     },
     {
@@ -302,7 +302,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/avatar.tsx"
+        "source": "packages/ui/src/components/avatar/index.tsx"
       }
     },
     {
@@ -334,7 +334,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/breadcrumb.tsx"
+        "source": "packages/ui/src/components/breadcrumb/index.tsx"
       }
     },
     {
@@ -349,6 +349,7 @@
         "@base-ui/react",
         "class-variance-authority",
         "clsx",
+        "react",
         "tailwind-merge"
       ],
       "registryDependencies": [
@@ -365,7 +366,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/button.tsx"
+        "source": "packages/ui/src/components/button/index.tsx"
       }
     },
     {
@@ -395,7 +396,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/card.tsx"
+        "source": "packages/ui/src/components/card/index.tsx"
       }
     },
     {
@@ -426,7 +427,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/checkbox.tsx"
+        "source": "packages/ui/src/components/checkbox/index.tsx"
       }
     },
     {
@@ -458,7 +459,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/dropdown-menu.tsx"
+        "source": "packages/ui/src/components/dropdown-menu/index.tsx"
       }
     },
     {
@@ -491,7 +492,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/field.tsx"
+        "source": "packages/ui/src/components/field/index.tsx"
       }
     },
     {
@@ -523,7 +524,38 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/file-upload.tsx"
+        "source": "packages/ui/src/components/file-upload/index.tsx"
+      }
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Input from the WHDS design system.",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "whds-base"
+      ],
+      "files": [
+        {
+          "path": "registry/base-nova/input/components/input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base-nova/input/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "source": "packages/ui/src/components/input/index.tsx"
       }
     },
     {
@@ -557,45 +589,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/input-group.tsx"
-      }
-    },
-    {
-      "name": "input",
-      "type": "registry:ui",
-      "title": "Input",
-      "description": "Input from the WHDS design system.",
-      "categories": [
-        "ui"
-      ],
-      "dependencies": [
-        "@base-ui/react",
-        "class-variance-authority",
-        "clsx",
-        "react",
-        "tailwind-merge"
-      ],
-      "registryDependencies": [
-        "button",
-        "textarea",
-        "whds-base"
-      ],
-      "files": [
-        {
-          "path": "registry/base-nova/input/components/input.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "registry/base-nova/input/components/input-group.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "registry/base-nova/input/lib/utils.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "meta": {
-        "source": "packages/ui/src/components/input.tsx"
+        "source": "packages/ui/src/components/input-group/index.tsx"
       }
     },
     {
@@ -628,7 +622,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/item.tsx"
+        "source": "packages/ui/src/components/item/index.tsx"
       }
     },
     {
@@ -657,7 +651,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/kbd.tsx"
+        "source": "packages/ui/src/components/kbd/index.tsx"
       }
     },
     {
@@ -687,7 +681,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/label.tsx"
+        "source": "packages/ui/src/components/label/index.tsx"
       }
     },
     {
@@ -717,7 +711,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/separator.tsx"
+        "source": "packages/ui/src/components/separator/index.tsx"
       }
     },
     {
@@ -747,7 +741,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/switch.tsx"
+        "source": "packages/ui/src/components/switch/index.tsx"
       }
     },
     {
@@ -777,7 +771,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/textarea.tsx"
+        "source": "packages/ui/src/components/textarea/index.tsx"
       }
     },
     {
@@ -810,7 +804,7 @@
         }
       ],
       "meta": {
-        "source": "packages/ui/src/components/reui/badge.tsx"
+        "source": "packages/ui/src/components/reui/badge/index.tsx"
       }
     }
   ]

@@ -3,7 +3,7 @@ export {
   AlertAction,
   AlertDescription,
   AlertTitle,
-} from "./components/alert.js"
+} from "./components/alert/index.js"
 export {
   Avatar,
   AvatarImage,
@@ -11,7 +11,7 @@ export {
   AvatarGroup,
   AvatarGroupCount,
   AvatarBadge,
-} from "./components/avatar.js"
+} from "./components/avatar/index.js"
 export {
   Breadcrumb,
   BreadcrumbList,
@@ -20,8 +20,8 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
-} from "./components/breadcrumb.js"
-export { Button, buttonVariants } from "./components/button.js"
+} from "./components/breadcrumb/index.js"
+export { Button, buttonVariants, type ButtonProps } from "./components/button/index.js"
 export {
   Card,
   CardHeader,
@@ -30,8 +30,8 @@ export {
   CardAction,
   CardDescription,
   CardContent,
-} from "./components/card.js"
-export { Checkbox } from "./components/checkbox.js"
+} from "./components/card/index.js"
+export { Checkbox } from "./components/checkbox/index.js"
 export {
   DropdownMenu,
   DropdownMenuPortal,
@@ -48,7 +48,7 @@ export {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
-} from "./components/dropdown-menu.js"
+} from "./components/dropdown-menu/index.js"
 export {
   Field,
   FieldLabel,
@@ -60,7 +60,7 @@ export {
   FieldSet,
   FieldContent,
   FieldTitle,
-} from "./components/field.js"
+} from "./components/field/index.js"
 export {
   InputGroup,
   InputGroupAddon,
@@ -68,8 +68,8 @@ export {
   InputGroupText,
   InputGroupInput,
   InputGroupTextarea,
-} from "./components/input-group.js"
-export { Input } from "./components/input.js"
+} from "./components/input-group/index.js"
+export { Input } from "./components/input/index.js"
 export {
   Item,
   ItemMedia,
@@ -81,13 +81,13 @@ export {
   ItemDescription,
   ItemHeader,
   ItemFooter,
-} from "./components/item.js"
-export { Kbd, KbdGroup } from "./components/kbd.js"
-export { Label } from "./components/label.js"
-export { Separator } from "./components/separator.js"
-export { Switch } from "./components/switch.js"
-export { Textarea } from "./components/textarea.js"
-export { Badge, badgeVariants, type BadgeProps } from "./components/reui/badge.js"
-export { FileUpload } from "./components/file-upload.js"
+} from "./components/item/index.js"
+export { Kbd, KbdGroup } from "./components/kbd/index.js"
+export { Label } from "./components/label/index.js"
+export { Separator } from "./components/separator/index.js"
+export { Switch } from "./components/switch/index.js"
+export { Textarea } from "./components/textarea/index.js"
+export { Badge, badgeVariants, type BadgeProps } from "./components/reui/badge/index.js"
+export { FileUpload } from "./components/file-upload/index.js"
 export { useFileUpload } from "./hooks/use-file-upload.js"
 export { cn } from "./lib/utils.js"

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs"
-import { Switch } from "@keys2design/whds-ui/components/switch"
+import { Switch } from "."
 
 const meta = {
   title: "Components/Switch",
@@ -7,18 +7,6 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
-  },
-  argTypes: {
-    size: {
-      control: "select",
-      options: ["default", "sm"],
-    },
-    defaultChecked: {
-      control: "boolean",
-    },
-    disabled: {
-      control: "boolean",
-    },
   },
 } satisfies Meta<typeof Switch>
 

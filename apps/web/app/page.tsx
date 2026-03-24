@@ -7,6 +7,15 @@ import {
 } from "@keys2design/whds-ui/components/alert"
 import { Button } from "@keys2design/whds-ui/components/button"
 import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@keys2design/whds-ui/components/dropdown-menu"
+import {
   Field,
   FieldDescription,
   FieldError,
@@ -117,9 +126,34 @@ export default function Page() {
             <Kbd>K</Kbd>
           </KbdGroup>
         </div>
-        
-          <FileUpload />
-        
+        <div className="bg-card/80 flex items-center justify-between rounded-md border p-3 shadow-xs">
+          <div className="space-y-1">
+            <p className="font-medium">Dropdown Menu example</p>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              Checkbox items with uncontrolled state.
+            </p>
+          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger render={<Button variant="outline" size="sm">View options</Button>} />
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Display</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuCheckboxItem defaultChecked>
+                  Show status
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem>
+                  Show timestamp
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem defaultChecked>
+                  Show assignee
+                </DropdownMenuCheckboxItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+        <FileUpload />
 
       </div>
     </div>
