@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs"
-import { Badge } from "@keys2design/whds-ui/components/reui/badge"
-import { Button } from "@keys2design/whds-ui/components/button"
+import { Badge } from "."
+import { Button } from "../../button"
 import { CheckIcon, XIcon } from "@phosphor-icons/react/dist/ssr"
 
 const meta = {
@@ -9,6 +9,9 @@ const meta = {
   tags: ["autodocs"],
   args: {
     children: "Badge",
+  },
+  argTypes: {
+    children: { control: "text" },
   },
 } satisfies Meta<typeof Badge>
 
@@ -73,10 +76,7 @@ export const WithLeftIcon: Story = {
 
 export const WithDismissButton: Story = {
   render: () => (
-    <Badge
-      variant="outline"
-      className="gap-0.75"
-    >
+    <Badge variant="outline" className="gap-0.75">
       Updates
       <Button
         variant="ghost"

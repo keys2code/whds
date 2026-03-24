@@ -1,0 +1,84 @@
+import { Meta, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ButtonStories from "./button.stories"
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Triggers actions or navigates to new pages. Supports seven visual variants, eight sizes, and works seamlessly with leading or trailing icons.
+
+## Import
+
+```tsx
+import { Button } from "@keys2design/whds-ui/components/button"
+```
+
+## Usage
+
+<Canvas of={ButtonStories.Default} />
+<Controls of={ButtonStories.Default} />
+
+---
+
+## Variants
+
+Use `variant` to communicate the intent of the action.
+
+| Variant | When to use |
+|---|---|
+| `default` | Primary action — one per view |
+| `outline` | Secondary action alongside a primary |
+| `secondary` | Alternative emphasis without border weight |
+| `ghost` | Tertiary actions, toolbars, icon-only |
+| `destructive` | Irreversible actions (delete, remove) |
+| `destructive-outline` | Destructive but lower visual weight |
+| `link` | Inline navigation that reads as text |
+
+<Canvas of={ButtonStories.Default} sourceState="none" />
+<Canvas of={ButtonStories.Outline} sourceState="none" />
+<Canvas of={ButtonStories.Secondary} sourceState="none" />
+<Canvas of={ButtonStories.Ghost} sourceState="none" />
+<Canvas of={ButtonStories.Destructive} sourceState="none" />
+<Canvas of={ButtonStories.DestructiveOutline} sourceState="none" />
+<Canvas of={ButtonStories.Link} sourceState="none" />
+
+---
+
+## Sizes
+
+Eight sizes are available. The three named text sizes (`sm`, `default`, `lg`, `xl`, `xs`) and five icon-only variants (`icon`, `icon-xs`, `icon-sm`, `icon-lg`, `icon-xl`).
+
+<Canvas of={ButtonStories.Small} sourceState="none" />
+<Canvas of={ButtonStories.Large} sourceState="none" />
+
+---
+
+## With icons
+
+Add icons inside the button's `children`. Use `data-icon="inline-start"` on leading icons and `data-icon="inline-end"` on trailing icons — this applies correct margin and sizing automatically.
+
+```tsx
+import { DownloadSimpleIcon } from "@phosphor-icons/react/dist/ssr"
+
+<Button>
+  <DownloadSimpleIcon aria-hidden="true" data-icon="inline-start" />
+  Download
+</Button>
+```
+
+<Canvas of={ButtonStories.WithLeftIcon} />
+<Canvas of={ButtonStories.WithRightIcon} />
+
+---
+
+## Disabled
+
+Set `disabled` to prevent interaction. Disabled buttons have `pointer-events: none` and reduced opacity.
+
+<Canvas of={ButtonStories.Disabled} />
+
+---
+
+## API reference
+
+<ArgTypes of={ButtonStories} />

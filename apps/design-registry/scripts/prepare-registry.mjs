@@ -1,11 +1,12 @@
 import {
+  existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
   rmSync,
   writeFileSync,
 } from "node:fs"
-import { dirname, join, parse } from "node:path"
+import { dirname, join } from "node:path"
 import process from "node:process"
 import { fileURLToPath } from "node:url"
 
@@ -224,23 +225,11 @@ function addNpmDependenciesFromCode(code, dependencySet) {
   }
 }
 
-function getTopLevelComponentBasenames(sourceDir) {
-  return new Set(
-    readdirSync(sourceDir)
-      .filter((f) => f.endsWith(".tsx"))
-      .filter((f) => !skippedRegistryComponents.has(f))
-      .map((f) => parse(f).name)
-  )
-}
-
-function getLocalHelperFiles(sourceDir, fileName, topLevelBasenames) {
-  return readdirSync(sourceDir)
-    .filter((entry) => entry.startsWith(`${fileName}-`))
+function getLocalHelperFiles(componentDir) {
+  return readdirSync(componentDir)
+    .filter((entry) => entry !== "index.tsx")
     .filter((entry) => entry.endsWith(".ts") || entry.endsWith(".tsx"))
-    .filter((entry) => !skippedRegistryComponents.has(entry))
-    .filter(
-      (entry) => !entry.endsWith(".tsx") || !topLevelBasenames.has(parse(entry).name)
-    )
+    .filter((entry) => !entry.endsWith(".stories.tsx"))
     .sort()
 }
 
@@ -251,18 +240,18 @@ function itemFilePath(itemName, ...segments) {
   )
 }
 
-function buildItem(componentFile, group, topLevelBasenames) {
-  const sourcePath = join(group.sourceDir, componentFile)
-  const fileName = parse(componentFile).name
-  const itemName = `${group.prefix}${fileName}`
+function buildItem(componentDir, group) {
+  const componentFolderPath = join(group.sourceDir, componentDir)
+  const sourcePath = join(componentFolderPath, "index.tsx")
+  const itemName = `${group.prefix}${componentDir}`
   const outputDir = join(appDir, "registry", REGISTRY_STYLE, itemName)
   const componentsDir = join(outputDir, "components")
   const libDir = join(outputDir, "lib")
-  const componentTarget = `${fileName}.tsx`
+  const componentTarget = `${componentDir}.tsx`
 
   const rawMain = readFileSync(sourcePath, "utf8")
   const sourceCode = rewriteRegistryImports(rawMain, itemName)
-  const localHelperFiles = getLocalHelperFiles(group.sourceDir, fileName, topLevelBasenames)
+  const localHelperFiles = getLocalHelperFiles(componentFolderPath)
 
   mkdirSync(componentsDir, { recursive: true })
   mkdirSync(libDir, { recursive: true })
@@ -271,7 +260,7 @@ function buildItem(componentFile, group, topLevelBasenames) {
   const allRewrittenCodes = [sourceCode]
 
   for (const helperFile of localHelperFiles) {
-    const helperPath = join(group.sourceDir, helperFile)
+    const helperPath = join(componentFolderPath, helperFile)
     const rawHelper = readFileSync(helperPath, "utf8")
     const helperCode = rewriteRegistryImports(rawHelper, itemName)
     allRewrittenCodes.push(helperCode)
@@ -287,7 +276,7 @@ function buildItem(componentFile, group, topLevelBasenames) {
   addNpmDependenciesFromCode(rawMain, dependencySet)
   for (const helperFile of localHelperFiles) {
     addNpmDependenciesFromCode(
-      readFileSync(join(group.sourceDir, helperFile), "utf8"),
+      readFileSync(join(componentFolderPath, helperFile), "utf8"),
       dependencySet
     )
   }
@@ -333,9 +322,11 @@ function buildItem(componentFile, group, topLevelBasenames) {
 }
 
 function getComponentFiles(group) {
-  return readdirSync(group.sourceDir)
-    .filter((fileName) => fileName.endsWith(".tsx"))
-    .filter((fileName) => !skippedRegistryComponents.has(fileName))
+  return readdirSync(group.sourceDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .filter((entry) => existsSync(join(group.sourceDir, entry.name, "index.tsx")))
+    .filter((entry) => !skippedRegistryComponents.has(entry.name))
+    .map((entry) => entry.name)
     .sort()
 }
 
@@ -347,12 +338,9 @@ rmSync(legacyItemsDir, { recursive: true, force: true })
 
 const items = [
   buildBaseItem(),
-  ...registryGroups.flatMap((group) => {
-    const topLevelBasenames = getTopLevelComponentBasenames(group.sourceDir)
-    return getComponentFiles(group).map((componentFile) =>
-      buildItem(componentFile, group, topLevelBasenames)
-    )
-  }),
+  ...registryGroups.flatMap((group) =>
+    getComponentFiles(group).map((componentDir) => buildItem(componentDir, group))
+  ),
 ]
 
 const registry = {
